@@ -14,19 +14,23 @@ public class LinkedList {
         child2.next = child3;
         child1.next = child2;
 
+        ls.traverseList();
 
-        //print traverse linkedList
-        printLinkedinList(ls.head);
+        ls.push("Pundalikrao");
+        System.out.println("After pushing data");
+        ls.traverseList();
+
+        //
+        ls.insertAfter(child1,"Amol");
+        System.out.println("After insert");
+        ls.traverseList();
+
+        System.out.println("=====");
+        ls.traverseList();
 
 
     }
 
-   public static void printLinkedinList(LinkedList_.Node node){
-        while (node != null){
-            System.out.println(node.data);
-            node = node.next;
-        }
-    }
 }
 
 class LinkedList_{
@@ -39,6 +43,26 @@ class LinkedList_{
             this.data = data;
             this.next = null;
         }
+    }
 
+    public void push(String data){
+        Node newNode = new Node(data);
+        newNode.next = head;
+        head = newNode;
+    }
+
+    public void insertAfter(Node prevNode, String data){
+        Node newNode = new Node(data);
+        newNode.next = prevNode.next;
+        prevNode.next = newNode;
+    }
+
+    //handle concurrency
+    void traverseList(){
+        Node tnode = head;
+        while (tnode != null){
+            System.out.println(tnode.data);
+            tnode = tnode.next;
+        }
     }
 }
