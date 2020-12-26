@@ -28,6 +28,10 @@ public class LinkedList {
         System.out.println("=====");
         ls.traverseList();
 
+        System.out.println("=== after deleting node");
+        ls.deleteNode("Krishna");
+        ls.traverseList();
+
 
     }
 
@@ -57,7 +61,19 @@ class LinkedList_{
         prevNode.next = newNode;
     }
 
-    //handle concurrency
+    //todo handle cornor cases
+    public void deleteNode(String key){
+        Node temp = head, prev = null;
+        while (temp != null && !temp.data.equals(key)){
+            prev = temp;
+            temp = temp.next;
+        }
+        if (temp == null) return;
+
+        prev.next = temp.next;
+    }
+
+
     void traverseList(){
         Node tnode = head;
         while (tnode != null){
